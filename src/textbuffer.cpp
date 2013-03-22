@@ -1,28 +1,30 @@
-#include "tbuffer.h"
+#include "textbuffer.h"
+
 #include <iostream>
 #include <string>
 
 using namespace std;
 
-void buffer::put(char c, int x, int y){
-    if(x > this.buffer.size()) this.buffer.resize(x + 1);
-    if(y > this.buffer[x].size()) this.buffer[x].resize(y + 1):
-    this.buffer[x][y] = c;
+void TextBuffer::put(char c, int x, int y){
+    if(x > this->data.size()) this->data.resize(x + 1);
+    if(y > this->data[x].size()) this->data[x].resize(y + 1);
+    this->data[x][y] = c;
 }
 
-string buffer::getLineAt(int x){
-    if(this.buffer.size() < x) return "";
-    return this.buffer[x];
-}
-
-// assumes x and y are valid
-// this may not be true
-void buffer::remove(char c, int x, int y){
-    this.buffer[x][y] = " ";
+vector<char> TextBuffer::getLineAt(int x){
+    if(this->data.size() < x)
+        throw new int(0);
+    return this->data[x];
 }
 
 // assumes x and y are valid
 // this may not be true
-void buffer::mod(char c, int x, int y){
-    this.buffer[x][y] = c;
+void TextBuffer::remove(char c, int x, int y){
+    this->data[x][y] = ' ';
+}
+
+// assumes x and y are valid
+// this may not be true
+void TextBuffer::mod(char c, int x, int y){
+    this->data[x][y] = c;
 }
