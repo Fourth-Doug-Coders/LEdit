@@ -1,0 +1,1 @@
+Program('ledit', ['main.cpp', 'textbuffer.cpp'], LIBS=['ncurses'])
