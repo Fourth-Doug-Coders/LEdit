@@ -1,2 +1,9 @@
+#Build files
+*.o
+src/ledit
+
 #Emacs auto-save files
 *~
+
+#Scons leftovers
+.sconsign.dblite
