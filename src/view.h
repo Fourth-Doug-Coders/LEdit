@@ -10,11 +10,12 @@ protected:
 	int x_size;
 	int y_size;
 public:
-	virtual View();
-	virtual View(int start_x, int start_y, int x_size, int y_size);
+	View();
+	View(int start_x, int start_y, int x_size, int y_size);
 	//waiting on Josh
 	virtual void display() = 0;
-	virtual bool resize();
+	virtual bool resize(int start_x, int start_y, int x_size, int y_size);
+	virtual bool reposition(int start_x, int start_y);
 };
 
 #endif /* VIEW_H */
