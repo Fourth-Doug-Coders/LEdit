@@ -3,6 +3,7 @@
 
 #include <list>
 #include <string>
+#include <vector>
 
 class Document {
 public:
@@ -24,6 +25,7 @@ public:
 
 private:
     // To be filled in later
+    std::vector<std::list<char>*> lines;
 };
 
 #endif /* DOCUMENT_H */
