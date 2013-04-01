@@ -2,22 +2,14 @@
 
 using namespace std;
 
-void KeystrokeQuit::log(ostream &out) {
-    out << "Quit" << endl;
-}
-
-bool KeystrokeQuit::shouldContinue() {
-    return false;
-}
-
-void KeystrokeSave::log(ostream &out) {
-    out << "Save" << endl;
-}
-
-void KeystrokePrint::log(ostream &out) {
-    out << "Print" << endl;
+void KeystrokeEnter::log(ostream &out) {
+    out << "Enter" << endl;
 }
 
 void KeystrokeBackspace::log(ostream &out) {
     out << "Backspace" << endl;
+}
+
+void KeystrokeTab::log(ostream &out) {
+    out << "Tab" << endl;
 }

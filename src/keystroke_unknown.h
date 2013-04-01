@@ -5,12 +5,12 @@
 
 class KeystrokeUnknown : public Keystroke {
     public:
-    KeystrokeUnknown(char arg);
+    KeystrokeUnknown(int arg);
 
     void log(std::ostream &out);
     
 private:
-    char arg;
+    int arg;
 };
 
 #endif /* KEYSTROKE_UNKNOWN_H */

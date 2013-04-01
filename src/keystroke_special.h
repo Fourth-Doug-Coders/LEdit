@@ -1,27 +1,21 @@
-#ifndef KEYSTROKE_CONTROL_H
-#define KEYSTROKE_CONTROL_H
+#ifndef KEYSTROKE_SPECIAL_H
+#define KEYSTROKE_SPECIAL_H
 
 #include "keystroke.h"
 
-class KeystrokePrint : public Keystroke {
-    public:
-    void log(std::ostream &out);
-};
-
-class KeystrokeQuit : public Keystroke {
-    public:
-    void log(std::ostream &out);
-    bool shouldContinue();
-};
-
-class KeystrokeSave : public Keystroke {
-    public:
+class KeystrokeEnter : public Keystroke {
+public:
     void log(std::ostream &out);
 };
 
 class KeystrokeBackspace : public Keystroke {
-    public:
+public:
     void log(std::ostream &out);
 };
 
-#endif /* KEYSTROKE_CONTROL_H */
+class KeystrokeTab : public Keystroke {
+public:
+    void log(std::ostream &out);
+};
+
+#endif /* KEYSTROKE_SPECIAL_H */
