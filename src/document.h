@@ -7,13 +7,14 @@
 class Document {
 public:
     Document();
+    ~Document();
 
     void open(std::string filename);
     void save();
     bool isOpen();
 
     char getChar(int lineNum, int colNum);
-    const list<char> *getLine(int lineNum);
+    const std::list<char> *getLine(int lineNum);
 
     int getFirstVisibleLineNum();
     int getNumLines();
