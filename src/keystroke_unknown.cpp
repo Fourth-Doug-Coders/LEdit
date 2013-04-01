@@ -2,10 +2,10 @@
 
 using namespace std;
 
-KeystrokeUnknown::KeystrokeUnknown(char arg_) {
+KeystrokeUnknown::KeystrokeUnknown(int arg_) {
     arg = arg_;
 }
 
 void KeystrokeUnknown::log(ostream &out) {
-    out << "Unknown '" << (int)arg << "'" << endl;
+    out << "Unknown '" << arg << "'" << endl;
 }
