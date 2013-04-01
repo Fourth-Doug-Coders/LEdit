@@ -13,7 +13,7 @@ public:
     bool isOpen();
 
     char getChar(int lineNum, int colNum);
-    list<char> getLine(int lineNum);
+    const list<char> *getLine(int lineNum);
 
     int getFirstVisibleLineNum();
     int getNumLines();
