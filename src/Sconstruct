@@ -1,1 +1,8 @@
-Program('ledit', ['main.cpp', 'textbuffer.cpp'], LIBS=['ncurses'])
+objects = [
+    Object('main.cpp'),
+    Object('keystroke.cpp'),
+    Object('keystroke_printable.cpp'),
+    Object('keystroke_special.cpp'),
+    Object('keystroke_unknown.cpp')
+]
+Program('ledit', [objects], LIBS=['ncurses'])

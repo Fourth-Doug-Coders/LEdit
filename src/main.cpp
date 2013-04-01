@@ -1,16 +1,19 @@
+#include <cassert>
+#include <cstdio>
+#include <cstdlib>
 #include <curses.h>
-#include <string.h>
-#include <vector>
-#include <stdio.h>
-#include <stdlib.h>
-#include <assert.h>
+#include <cstring>
+#include <fstream>
 #include <iostream>
+#include <vector>
+
+#include "keystroke.h"
 
 using namespace std;
 
 vector<char> buffer;
 
-void run();
+void run(ostream&);
 
 int main(){
     WINDOW * win = initscr();
@@ -22,9 +25,10 @@ int main(){
 
     move(max_y - 2,0);
     hline(ACS_CKBOARD,max_x);
-    mvaddstr(max_y -1,0,"LEdit. Ctrl-C to close.");
+    mvaddstr(max_y -1,0,"LEdit. Ctl-Q to close.");
 
-    run();
+    ofstream fout("log.txt");
+    run(fout);
 
     clear();
     addstr("Exited text editor");
@@ -33,13 +37,13 @@ int main(){
     return 0;
 }
 
-void run(){
+void run(ostream &log){
     int kP = 0;
     move(0,0);
-    while(kP != KEY_F(1)){
-        
-        kP = getch();
-        int i = 0;
-        i++;
+
+    Keystroke *ks = 0;
+    while (ks == 0 || ks->shouldContinue()) {
+	ks = getNextKeystroke();
+	ks->log(log);
     }
 }
