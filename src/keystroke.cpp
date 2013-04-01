@@ -23,6 +23,16 @@ static const int KP_CUT         = 24;
 static const int KP_REDO        = 25;
 static const int KP_UNDO        = 26;
 static const int KP_BACKSPACE   = 127;
+static const int KP_DOWN        = 258;
+static const int KP_UP          = 259;
+static const int KP_LEFT        = 260;
+static const int KP_RIGHT       = 261;
+static const int KP_HOME        = 262;
+static const int KP_DELETE      = 330;
+static const int KP_PAGEDOWN    = 338;
+static const int KP_PAGEUP      = 339;
+static const int KP_END         = 360;
+
 
 Keystroke *getNextKeystroke() {
     int nextCh = getch();
@@ -45,6 +55,15 @@ Keystroke *getNextKeystroke() {
     case KP_REDO:         return new KeystrokeRedo();
     case KP_UNDO:         return new KeystrokeUndo();
     case KP_BACKSPACE:    return new KeystrokeBackspace();
+    case KP_DELETE:       return new KeystrokeDelete();
+    case KP_UP:           return new KeystrokeUp();
+    case KP_DOWN:         return new KeystrokeDown();
+    case KP_LEFT:         return new KeystrokeLeft();
+    case KP_RIGHT:        return new KeystrokeRight();
+    case KP_HOME:         return new KeystrokeHome();
+    case KP_END:          return new KeystrokeEnd();
+    case KP_PAGEUP:       return new KeystrokePageUp();
+    case KP_PAGEDOWN:     return new KeystrokePageDown();
     default:              return new KeystrokeUnknown(nextCh);
     }
 
