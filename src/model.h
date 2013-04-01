@@ -6,6 +6,7 @@
 class Model {
 public:
     Model();
+    ~Model();
 
     Document *getCurrentDocument();
 
