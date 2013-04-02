@@ -1,5 +1,5 @@
-#ifndef VIEW_H
-#define VIEW_H
+#ifndef DOCUMENT_VIEW_H
+#define DOCUMENT_VIEW_H
 
 #include <iostream>
 
@@ -18,4 +18,4 @@ public:
 	virtual bool reposition(int start_x, int start_y);
 };
 
-#endif /* VIEW_H */
+#endif /* DOCUMENT_VIEW_H */

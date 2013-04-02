@@ -8,7 +8,7 @@ DocumentView::DocumentView(){
 	y_size = 0;
 }
 
-View::DocumentView(int start_x, int start_y, int x_size, int y_size){
+DocumentView::DocumentView(int start_x, int start_y, int x_size, int y_size){
 	this->resize(start_x, start_y, x_size, y_size);
 }
 
