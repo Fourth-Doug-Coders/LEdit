@@ -2,11 +2,10 @@
 #define NORMAL_VIEW_H
 
 #include "document_view.h"
-#include <iostream>
 
-class NormalView::DocumentView {
+class NormalView : public DocumentView{
 public:
-	virtual void display() = 0;
+	virtual void display();
 };
 
 #endif /* NORMAL_VIEW_H */

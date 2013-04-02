@@ -1,8 +1,6 @@
 #ifndef DOCUMENT_VIEW_H
 #define DOCUMENT_VIEW_H
 
-#include <iostream>
-
 class DocumentView {
 protected:
 	int start_x;
