@@ -1,5 +1,7 @@
 #include "document.h"
 
+#include "cursor.h"
+
 #include <string>
 
 using namespace std;
@@ -14,11 +16,19 @@ Document::Document() {
     lines.push_back(toList(""));
     lines.push_back(toList("Uh oh, the document is about to end!!!!"));
     lines.push_back(toList("This is the last line"));
+
+    cursor = new Cursor();
+    for (int i = 0; i < 4; i++)
+	cursor->moveDown();
+    for (int i = 0; i < 12; i++)
+	cursor->moveRight();
 }
 
 Document::~Document() {
     for (int i = 0; i < lines.size(); i++)
 	delete lines[i];
+
+    delete cursor;
 }
 
 char Document::getChar(int lineNum, int colNum) {
@@ -40,12 +50,8 @@ int Document::getNumLines() {
     return lines.size();
 }
 
-int Document::getCursorX() {
-    return 4;
-}
-
-int Document::getCursorY() {
-    return 12;
+Cursor *Document::getCursor() {
+    return cursor;
 }
 
 static list<char> *toList(const string &arg) {

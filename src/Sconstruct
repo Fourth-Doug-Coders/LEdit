@@ -7,6 +7,7 @@ objects = [
     Object('keystroke_unknown.cpp'),
 
     # Document Model
+    Object('cursor.cpp'),
     Object('document.cpp'),
     Object('model.cpp'),
 
