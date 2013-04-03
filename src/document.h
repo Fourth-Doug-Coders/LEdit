@@ -3,6 +3,9 @@
 
 #include <list>
 #include <string>
+#include <vector>
+
+class Cursor;
 
 class Document {
 public:
@@ -19,11 +22,12 @@ public:
     int getFirstVisibleLineNum();
     int getNumLines();
 
-    int getCursorX();
-    int getCursorY();
+    Cursor *getCursor();
 
 private:
     // To be filled in later
+    std::vector<std::list<char>*> lines;
+    Cursor *cursor;
 };
 
 #endif /* DOCUMENT_H */

@@ -1,9 +1,16 @@
 objects = [
-    Object('main.cpp'),
+    # Keystroke
     Object('keystroke.cpp'),
     Object('keystroke_control.cpp'),
     Object('keystroke_printable.cpp'),
     Object('keystroke_special.cpp'),
-    Object('keystroke_unknown.cpp')
+    Object('keystroke_unknown.cpp'),
+
+    # Document Model
+    Object('cursor.cpp'),
+    Object('document.cpp'),
+    Object('model.cpp'),
+
+    Object('main.cpp')
 ]
 Program('ledit', [objects], LIBS=['ncurses'])
