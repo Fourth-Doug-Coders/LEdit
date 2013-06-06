@@ -7,10 +7,9 @@ protected:
 	int y_size;
 public:
 	DocumentView();
-	DocumentView(int start_x, int start_y, int x_size, int y_size);
-	virtual void display() = 0;
-	virtual bool resize(int start_x, int start_y, int x_size, int y_size);
-	virtual bool reposition(int start_x, int start_y);
+	DocumentView(int x_size, int y_size);
+	virtual void display(int x_screen_start, int y_screen_start, char * text) = 0;
+	virtual bool resize(int x_size, int y_size);
 };
 
 #endif /* DOCUMENT_VIEW_H */

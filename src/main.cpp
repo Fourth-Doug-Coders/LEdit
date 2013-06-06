@@ -29,6 +29,7 @@ int main(){
     move(max_y - 2,0);
     hline(ACS_CKBOARD,max_x);
     mvaddstr(max_y -1,0,"LEdit. Ctl-Q to close.");
+    move(0,0);
 
     ofstream fout("log.txt");
     run(fout);
@@ -42,13 +43,14 @@ int main(){
 
 void run(ostream &log){
     int kP = 0;
-    move(0,0);
 
     Keystroke * ks = 0;
-    //DocumentView * dv = new NormalView();
+    DocumentView * dv = new NormalView();
+    Model * model = new Model();
     //Document * d = new Document();
     while (ks == 0 || ks->shouldContinue()) {
     	ks = getNextKeystroke();
+        ks->apply(model);
         //ks->apply(d);
         //dv->display(d);
     	ks->log(log);

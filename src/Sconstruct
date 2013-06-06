@@ -1,6 +1,5 @@
 objects = [
     # Keystroke
-    Object('model.cpp'),
     Object('keystroke.cpp'),
     Object('keystroke_control.cpp'),
     Object('keystroke_printable.cpp'),
@@ -10,6 +9,11 @@ objects = [
     # Document Model
     Object('cursor.cpp'),
     Object('document.cpp'),
+    Object('model.cpp'),
+
+    # Views
+    Object('normal_view.cpp'),
+    Object('document_view.cpp'),
 
     Object('main.cpp')
 ]
