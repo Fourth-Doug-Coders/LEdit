@@ -5,7 +5,7 @@
 
 class NormalView : public DocumentView{
 public:
-	virtual void display();
+	virtual void display(Document * d);
 };
 
 #endif /* NORMAL_VIEW_H */

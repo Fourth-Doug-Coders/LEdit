@@ -7,6 +7,8 @@ class Model {
 public:
     Model();
     ~Model();
+    void addCharAtCursor(char c);
+    void moveCursor(int x, int y);   
 
     Document *getCurrentDocument();
 

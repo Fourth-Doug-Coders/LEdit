@@ -2,11 +2,12 @@
 #define KEYSTROKE_PRINTABLE_H
 
 #include "keystroke.h"
+#include "model.h"
 
 class KeystrokePrintable : public Keystroke {
 public:
     KeystrokePrintable(char arg);
-
+    void apply(Model *);
     void log(std::ostream &out);
     
 private:

@@ -3,8 +3,6 @@
 
 class DocumentView {
 protected:
-	int start_x;
-	int start_y;
 	int x_size;
 	int y_size;
 public:

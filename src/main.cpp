@@ -8,6 +8,9 @@
 #include <vector>
 
 #include "keystroke.h"
+#include "document_view.h"
+#include "normal_view.h"
+#include "document.h"
 
 using namespace std;
 
@@ -41,9 +44,13 @@ void run(ostream &log){
     int kP = 0;
     move(0,0);
 
-    Keystroke *ks = 0;
+    Keystroke * ks = 0;
+    //DocumentView * dv = new NormalView();
+    //Document * d = new Document();
     while (ks == 0 || ks->shouldContinue()) {
-	ks = getNextKeystroke();
-	ks->log(log);
+    	ks = getNextKeystroke();
+        //ks->apply(d);
+        //dv->display(d);
+    	ks->log(log);
     }
 }

@@ -22,6 +22,8 @@ Document::Document() {
 	cursor->moveDown();
     for (int i = 0; i < 12; i++)
 	cursor->moveRight();
+    start_x = 0;
+    start_y = 0;
 }
 
 Document::~Document() {
@@ -52,6 +54,23 @@ int Document::getNumLines() {
 
 Cursor *Document::getCursor() {
     return cursor;
+}
+
+void Document::addCharAtCursor(char c)
+{
+    //TODO: add this here
+}
+void Document::moveCursor(int x, int y)
+{
+    //TODO:add this here
+}
+
+int Document::getStartX(){
+    return start_x;
+}
+
+int Document::getStartY(){
+    return start_y;
 }
 
 static list<char> *toList(const string &arg) {
