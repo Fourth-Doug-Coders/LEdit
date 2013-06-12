@@ -65,6 +65,25 @@ void Document::moveCursor(int x, int y)
     //TODO:add this here
 }
 
+//gives the entire thing as a pointer
+const vector<string> Document::getLinesAtScreen(int screen_x, int screen_y)
+{
+    vector<string> lines;
+    for(int i = start_y; i < start_y + screen_y; i++) {
+        if(i > lines.size()) lines.push_back("");
+        string appendStr = "";
+        const list<char> * line = getLine(i);
+        int j = 0;
+        for(list<char>::const_iterator it = line->begin(); it != line->end(); it++){
+            if(j < start_x || j < start_x + screen_x || j > line->size()) continue;
+            appendStr.append(1u, *it);
+        }
+        lines.push_back(appendStr);
+    }
+    return lines;
+}
+
+
 int Document::getStartX(){
     return start_x;
 }

@@ -47,12 +47,11 @@ void run(ostream &log){
     Keystroke * ks = 0;
     DocumentView * dv = new NormalView();
     Model * model = new Model();
-    //Document * d = new Document();
+    Document * d = model->getCurrentDocument();
     while (ks == 0 || ks->shouldContinue()) {
     	ks = getNextKeystroke();
         ks->apply(model);
-        //ks->apply(d);
-        //dv->display(d);
+        //dv->display(d->getLines(), d->getStartX(), d->getStartY);
     	ks->log(log);
     }
 }
