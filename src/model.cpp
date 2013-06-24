@@ -1,7 +1,7 @@
 #include "model.h"
 
 Model::Model() {
-    currentDoc = new Document;
+    currentDoc = new Document("test.ldt");
 }
 
 Model::~Model() {
