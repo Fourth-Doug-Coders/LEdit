@@ -12,7 +12,22 @@ using namespace std;
 
 string TESTFILENAME = "testfile12345.txt";
 
+/**
+ * This method applies a series of commands presented in a string
+ * to a document in the following way:
+ * - Anything between []'s is added as if typed in
+ * - s is save
+ * - l,r,u,d are the arrow keys
+ * - n is enter (newline)
+ */
 static void applyCommandsToDocument(Document *doc, const string &commands);
+
+/**
+ * This method uses BOOST_CHECK to check that the contents of the
+ * file given by "filename" are exactly the same as the contents of
+ * the string "expectedContents". If any are not, this method will
+ * cause the test to fail.
+ */
 static void checkFullFile(const string &filename, const string &expectedContents);
 
 BOOST_AUTO_TEST_CASE( multipleCharacters ) {
@@ -22,6 +37,15 @@ BOOST_AUTO_TEST_CASE( multipleCharacters ) {
     applyCommandsToDocument(document, "[abq] s");
 
     checkFullFile(TESTFILENAME, "abq");
+}
+
+BOOST_AUTO_TEST_CASE( writeAfterSaveDoesNotGetStored ) {
+    remove(TESTFILENAME.c_str());
+    
+    Document *document = new Document(TESTFILENAME);
+    applyCommandsToDocument(document, "[abcde] s [fghij]");
+
+    checkFullFile(TESTFILENAME, "abcde");
 }
 
 BOOST_AUTO_TEST_CASE( leftRightCursorMovement ) {
@@ -114,13 +138,49 @@ BOOST_AUTO_TEST_CASE( rightPastLineBreakGoesToFrontOfNextLine ) {
     checkFullFile(TESTFILENAME, "abcde\nijkfgh");
 }
 
-BOOST_AUTO_TEST_CASE( writeAfterSaveDoesNotGetStored ) {
+BOOST_AUTO_TEST_CASE( upPastTheEndOfAShorterLineDoesNotCrash ) {
     remove(TESTFILENAME.c_str());
     
     Document *document = new Document(TESTFILENAME);
-    applyCommandsToDocument(document, "[abcde] n s [fghij]");
+    applyCommandsToDocument(document, "[huging] n [a] n [car] uu [g] s");
 
-    checkFullFile(TESTFILENAME, "abcde\n");
+    checkFullFile(TESTFILENAME, "hugging\na\ncar");
+}
+
+BOOST_AUTO_TEST_CASE( typePastTheEndOfALine ) {
+    remove(TESTFILENAME.c_str());
+    
+    Document *document = new Document(TESTFILENAME);
+    applyCommandsToDocument(document, "[hug] n [a] n [automobile] u [n] s");
+
+    checkFullFile(TESTFILENAME, "hug\nan\nautomobile");
+}
+
+BOOST_AUTO_TEST_CASE( leftPastTheEndOfALine ) {
+    remove(TESTFILENAME.c_str());
+    
+    Document *document = new Document(TESTFILENAME);
+    applyCommandsToDocument(document, "[say] n [a] n [blabla] u l [bl] s");
+
+    checkFullFile(TESTFILENAME, "say\nbla\nblabla");
+}
+
+BOOST_AUTO_TEST_CASE( rightPastTheEndOfALine ) {
+    remove(TESTFILENAME.c_str());
+    
+    Document *document = new Document(TESTFILENAME);
+    applyCommandsToDocument(document, "[say] n [bla] n [abla] u r [bl] s");
+
+    checkFullFile(TESTFILENAME, "say\nbla\nblabla");
+}
+
+BOOST_AUTO_TEST_CASE( enterPastTheEndOfALine ) {
+    remove(TESTFILENAME.c_str());
+    
+    Document *document = new Document(TESTFILENAME);
+    applyCommandsToDocument(document, "[say] n [a] n [blabla] u n [bla] s");
+
+    checkFullFile(TESTFILENAME, "say\na\nbla\nblabla");
 }
 
 static void applyCommandsToDocument(Document *doc, const string &commands) {

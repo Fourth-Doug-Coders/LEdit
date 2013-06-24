@@ -1,7 +1,5 @@
 #include "document.h"
 
-#include "cursor.h"
-
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -32,11 +30,13 @@ void Document::save() {
 }
 
 void Document::addCharAtCursor(char ch) {
+    moveCursorBackOntoLine();
     lines[cursor_row].insert(lines[cursor_row].begin() + cursor_col, ch);
     cursor_col++;
 }
 
 void Document::addNextLine() {
+    moveCursorBackOntoLine();
     cursor_row++;
     lines.insert(lines.begin() + cursor_row, vector<char>());
     lines[cursor_row] = lines[cursor_row-1];
@@ -48,6 +48,7 @@ void Document::addNextLine() {
 }
 
 void Document::moveCursorLeft() {
+    moveCursorBackOntoLine();
     cursor_col--;
     if (cursor_col < 0) {
 	if (cursor_row == 0) {
@@ -81,4 +82,9 @@ void Document::moveCursorDown() {
     cursor_row++;
     if (cursor_row > lines.size()-1)
     	cursor_row = lines.size()-1;
+}
+
+void Document::moveCursorBackOntoLine() {
+    if (cursor_col > lines[cursor_row].size())
+	cursor_col = lines[cursor_row].size();
 }

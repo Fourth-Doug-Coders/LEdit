@@ -26,6 +26,8 @@ private:
     std::vector<std::vector<char> > lines;
 
     int cursor_col, cursor_row;
+
+    void moveCursorBackOntoLine();
 };
 
 #endif /* DOCUMENT_H */
