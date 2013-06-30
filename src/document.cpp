@@ -6,12 +6,18 @@
 
 using namespace std;
 
+static void addCharToLines(char ch,
+			   vector<char> &current_line,
+			   vector<vector<char> > &lines);
+
+static void initLinesFromFileStream(vector<vector<char> > &lines, const string &filename);
+
 Document::Document(const string &filename) {
     this->cursor_col = 0;
     this->cursor_row = 0;
     this->filename = filename;
 
-    this->lines.push_back(vector<char>());
+    initLinesFromFileStream(this->lines, filename);
 }
 
 Document::~Document() {
@@ -41,8 +47,8 @@ void Document::addNextLine() {
     lines.insert(lines.begin() + cursor_row, vector<char>());
     lines[cursor_row] = lines[cursor_row-1];
     lines[cursor_row].erase(lines[cursor_row].begin(),
-			    lines[cursor_row].begin()+cursor_col);
-    lines[cursor_row-1].erase(lines[cursor_row-1].begin()+cursor_col,
+			    lines[cursor_row].begin() + cursor_col);
+    lines[cursor_row-1].erase(lines[cursor_row-1].begin() + cursor_col,
 			      lines[cursor_row-1].end());
     cursor_col = 0;
 }
@@ -88,3 +94,46 @@ void Document::moveCursorBackOntoLine() {
     if (cursor_col > lines[cursor_row].size())
 	cursor_col = lines[cursor_row].size();
 }
+
+int Document::getNumLines() {
+    return lines.size();
+}
+
+char Document::getCharAt(int row, int col) {
+    return lines[row][col];
+}
+
+int Document::getLineLength(int row) {
+    return lines[row].size();
+}
+
+int Document::getCursorRow() {
+    return cursor_row;
+}
+
+int Document::getCursorCol() {
+    return cursor_col;
+}
+
+static void addCharToLines(char ch,
+			   vector<char> &current_line,
+			   vector<vector<char> > &lines) {
+    if (ch == '\n') {
+	lines.push_back(current_line);
+	current_line.clear();
+    } else {
+	current_line.push_back(ch);
+    }
+}
+
+static void initLinesFromFileStream(vector<vector<char> > &lines, const string &filename) {
+    ifstream fin(filename.c_str());
+    vector<char> current_line;
+
+    for (char ch = fin.get(); !fin.fail(); ch = fin.get())
+	addCharToLines(ch, current_line, lines);
+    lines.push_back(current_line);
+    
+    fin.close();
+}
+

@@ -20,6 +20,13 @@ public:
     void moveCursorUp();
     void moveCursorDown();
 
+    int getNumLines();
+    char getCharAt(int row, int col);
+    int getLineLength(int row);
+
+    int getCursorRow();
+    int getCursorCol();
+
 private:
     std::string filename;
 
