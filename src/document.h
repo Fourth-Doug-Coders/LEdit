@@ -5,29 +5,36 @@
 #include <string>
 #include <vector>
 
-class Cursor;
-
 class Document {
 public:
-    Document();
+    Document(const std::string &filename);
     ~Document();
 
-    void open(std::string filename);
     void save();
-    bool isOpen();
 
-    char getChar(int lineNum, int colNum);
-    const std::list<char> *getLine(int lineNum);
+    void addCharAtCursor(char c);
+    void addNextLine();
 
-    int getFirstVisibleLineNum();
+    void moveCursorLeft();
+    void moveCursorRight();
+    void moveCursorUp();
+    void moveCursorDown();
+
     int getNumLines();
+    char getCharAt(int row, int col);
+    int getLineLength(int row);
 
-    Cursor *getCursor();
+    int getCursorRow();
+    int getCursorCol();
 
 private:
-    // To be filled in later
-    std::vector<std::list<char>*> lines;
-    Cursor *cursor;
+    std::string filename;
+
+    std::vector<std::vector<char> > lines;
+
+    int cursor_col, cursor_row;
+
+    void moveCursorBackOntoLine();
 };
 
 #endif /* DOCUMENT_H */

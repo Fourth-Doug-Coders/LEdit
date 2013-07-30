@@ -14,3 +14,10 @@ objects = [
     Object('main.cpp')
 ]
 Program('ledit', [objects], LIBS=['ncurses'])
+
+
+test_document_objects = [
+    Object('document.cpp'),
+    Object('test_document.cpp')
+]
+Program('test_document', test_document_objects, LIBS=['boost_unit_test_framework'])

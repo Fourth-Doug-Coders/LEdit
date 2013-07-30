@@ -1,6 +1,7 @@
 #Build files
 *.o
-src/ledit
+ledit
+test_document
 
 #Emacs auto-save files
 *~
